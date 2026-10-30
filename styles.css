@@ -314,3 +314,53 @@ button {
     font-size: clamp(30px, 9vw, 38px);
   }
 }
+
+
+/* Facebook contact styling */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  min-width: 0;
+}
+
+.contact-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #0866ff;
+}
+
+.contact-details {
+  min-width: 0;
+}
+
+.contact-details h4 {
+  margin: 0 0 5px;
+  font-weight: 700;
+}
+
+.contact-details a {
+  color: #0866ff;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: color 0.2s ease;
+}
+
+.contact-details a:hover {
+  color: #004bb5;
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .contact-item {
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .contact-details a {
+    font-size: 14px;
+  }
+}
