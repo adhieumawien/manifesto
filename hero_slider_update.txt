@@ -1,0 +1,304 @@
+SAMUEL ADHIEU CAMPAIGN WEBSITE — RESPONSIVE HERO SLIDER
+======================================================
+
+IMAGE FILES
+Put these five files in: assets/images/
+  slider1.png
+  slider2.png
+  slider3.png
+  slider4.png
+  slider5.png
+
+1) index.html — REPLACE THE EXISTING <section class="hero">...</section>
+with the following:
+
+<section class="hero" aria-label="Campaign highlights">
+  <div class="hero-slider" aria-hidden="true">
+    <div class="hero-slide is-active"><img src="assets/images/slider1.png" alt="" fetchpriority="high"></div>
+    <div class="hero-slide"><img src="assets/images/slider2.png" alt="" loading="lazy"></div>
+    <div class="hero-slide"><img src="assets/images/slider3.png" alt="" loading="lazy"></div>
+    <div class="hero-slide"><img src="assets/images/slider4.png" alt="" loading="lazy"></div>
+    <div class="hero-slide"><img src="assets/images/slider5.png" alt="" loading="lazy"></div>
+  </div>
+  <div class="hero-shade" aria-hidden="true"></div>
+
+  <div class="container hero-content">
+    <p class="eyebrow light"><span></span> A vision for Constituency No. 19</p>
+    <h1>A stronger voice.<br><em>A safer community.</em><br>A better future.</h1>
+    <p class="hero-intro">A commitment to peace, justice, education, healthcare and opportunities for every family in Awul and Manalor.</p>
+    <div class="hero-actions">
+      <a class="button button-lime" href="#priorities">Explore the vision <span aria-hidden="true">↓</span></a>
+      <a class="button button-outline-light" href="manifesto.html">Read the manifesto</a>
+    </div>
+    <div class="hero-note"><span class="note-line"></span><span>Leadership that listens. Representation that serves.</span></div>
+  </div>
+
+  <div class="hero-stamp"><strong>19</strong><span>Constituency<br>Awul &amp; Manalor</span></div>
+
+  <div class="hero-slider-controls" aria-label="Hero image controls">
+    <button class="slider-arrow slider-prev" type="button" aria-label="Previous image">&#8592;</button>
+    <div class="slider-dots" role="group" aria-label="Choose hero image">
+      <button class="slider-dot is-active" type="button" aria-label="Show image 1" aria-pressed="true"></button>
+      <button class="slider-dot" type="button" aria-label="Show image 2" aria-pressed="false"></button>
+      <button class="slider-dot" type="button" aria-label="Show image 3" aria-pressed="false"></button>
+      <button class="slider-dot" type="button" aria-label="Show image 4" aria-pressed="false"></button>
+      <button class="slider-dot" type="button" aria-label="Show image 5" aria-pressed="false"></button>
+    </div>
+    <button class="slider-arrow slider-next" type="button" aria-label="Next image">&#8594;</button>
+  </div>
+</section>
+
+2) styles.css — ADD/REPLACE THE HERO SLIDER STYLES
+Keep your existing :root variables, .container, typography, buttons and other site styles.
+Replace your existing .hero, .hero-slider, .hero-slide, .hero-shade, .hero-content,
+.hero-stamp and .hero-slider-controls / .slider-arrow / .slider-dots / .slider-dot
+rules with this block. Add the responsive rules below to your existing media queries or
+place them after the main hero rules.
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 670px;
+  background: var(--forest);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+.hero-slider,
+.hero-shade {
+  position: absolute;
+  inset: 0;
+}
+.hero-slider {
+  overflow: hidden;
+  background: #123b2c;
+  z-index: 0;
+}
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.035);
+  transition: opacity 850ms ease, transform 5.8s ease;
+  pointer-events: none;
+}
+.hero-slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;
+}
+.hero-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+}
+.hero-shade {
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(7,32,23,.93) 0%, rgba(8,37,26,.78) 42%, rgba(9,37,27,.28) 100%),
+    linear-gradient(0deg, rgba(8,29,21,.45), transparent 60%);
+}
+.hero-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  padding: 100px 0 110px;
+}
+.hero-stamp {
+  position: absolute;
+  z-index: 4;
+  right: max(24px, calc((100vw - var(--container)) / 2));
+  bottom: 0;
+  background: var(--lime);
+  color: var(--forest);
+  width: 178px;
+  padding: 19px 22px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+.hero-stamp strong {
+  font-family: var(--display);
+  font-size: 47px;
+  line-height: 1;
+}
+.hero-stamp span {
+  font-size: 10px;
+  line-height: 1.45;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.hero-slider-controls {
+  position: absolute;
+  z-index: 5;
+  left: max(18px, calc((100vw - var(--container)) / 2));
+  bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.slider-arrow {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.65);
+  border-radius: 50%;
+  background: rgba(8,37,26,.38);
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background .2s, border-color .2s, color .2s;
+}
+.slider-arrow:hover,
+.slider-arrow:focus-visible {
+  background: var(--lime);
+  border-color: var(--lime);
+  color: var(--forest);
+}
+.slider-dots {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.slider-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 1px solid #fff;
+  border-radius: 99px;
+  background: transparent;
+  cursor: pointer;
+  transition: width .25s, background .25s;
+}
+.slider-dot.is-active {
+  width: 25px;
+  background: var(--lime);
+  border-color: var(--lime);
+}
+.slider-arrow:focus-visible,
+.slider-dot:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* Tablet and mobile responsiveness */
+@media (max-width: 760px) {
+  .hero { min-height: 650px; }
+  .hero-content { padding: 85px 0 130px; }
+  .hero-slide img { object-position: 58% center; }
+  .hero-shade {
+    background:
+      linear-gradient(90deg, rgba(7,32,23,.93), rgba(8,37,26,.73)),
+      linear-gradient(0deg, rgba(8,29,21,.5), transparent);
+  }
+  .hero-stamp { right: 18px; width: 150px; padding: 14px; }
+  .hero-stamp strong { font-size: 39px; }
+  .hero-intro { font-size: 15px; }
+  .hero-slider-controls { left: 18px; bottom: 22px; }
+}
+@media (max-width: 420px) {
+  .hero { min-height: 680px; }
+  .hero-content { padding-top: 72px; padding-bottom: 145px; }
+  .hero h1 { font-size: clamp(39px, 11vw, 50px); }
+  .hero-stamp { right: 12px; width: 132px; padding: 11px; }
+  .hero-stamp strong { font-size: 34px; }
+  .hero-stamp span { font-size: 9px; }
+  .hero-slider-controls { left: 12px; bottom: 17px; gap: 9px; }
+  .slider-arrow { width: 32px; height: 32px; }
+  .slider-dots { gap: 5px; }
+  .slider-dot { width: 7px; height: 7px; }
+  .slider-dot.is-active { width: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide { transition: none; transform: none; }
+}
+
+3) script.js — REPLACE YOUR EXISTING HERO SLIDER JAVASCRIPT
+Keep your mobile navigation, footer year and contact form code. Replace only the existing
+section beginning with the comment “Responsive hero image slider” through its closing brace
+with this code:
+
+// Responsive hero slider: assets/images/slider1.png through slider5.png.
+(() => {
+  const hero = document.querySelector(".hero");
+  if (!hero) return;
+
+  const slides = Array.from(hero.querySelectorAll(".hero-slide"));
+  const dots = Array.from(hero.querySelectorAll(".slider-dot"));
+  const previous = hero.querySelector(".slider-prev");
+  const next = hero.querySelector(".slider-next");
+  if (!slides.length) return;
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let activeIndex = Math.max(0, slides.findIndex(slide => slide.classList.contains("is-active")));
+  let timer = null;
+
+  function showSlide(index) {
+    activeIndex = (index + slides.length) % slides.length;
+    slides.forEach((slide, i) => {
+      const active = i === activeIndex;
+      slide.classList.toggle("is-active", active);
+      slide.setAttribute("aria-hidden", String(!active));
+    });
+    dots.forEach((dot, i) => {
+      const active = i === activeIndex;
+      dot.classList.toggle("is-active", active);
+      dot.setAttribute("aria-pressed", String(active));
+    });
+  }
+
+  function stopAutoplay() {
+    if (timer !== null) window.clearInterval(timer);
+    timer = null;
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    if (!reduceMotion && !document.hidden) {
+      timer = window.setInterval(() => showSlide(activeIndex + 1), 5000);
+    }
+  }
+
+  previous?.addEventListener("click", () => {
+    showSlide(activeIndex - 1);
+    startAutoplay();
+  });
+  next?.addEventListener("click", () => {
+    showSlide(activeIndex + 1);
+    startAutoplay();
+  });
+  dots.forEach((dot, index) => dot.addEventListener("click", () => {
+    showSlide(index);
+    startAutoplay();
+  }));
+
+  // Pause while the visitor interacts with the hero or switches browser tabs.
+  hero.addEventListener("mouseenter", stopAutoplay);
+  hero.addEventListener("mouseleave", startAutoplay);
+  hero.addEventListener("focusin", stopAutoplay);
+  hero.addEventListener("focusout", event => {
+    if (!hero.contains(event.relatedTarget)) startAutoplay();
+  });
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stopAutoplay();
+    else startAutoplay();
+  });
+
+  showSlide(activeIndex);
+  startAutoplay();
+})();
+
+4) CHECK THE SCRIPT LINK
+Before </body> in index.html, make sure this line exists:
+<script src="script.js"></script>
+
+5) IMAGE RECOMMENDATION
+Use landscape images, ideally 1600 × 900 pixels or larger. The filenames and capitalization
+must match exactly. The image files themselves are not generated by this code; add your own
+approved campaign images.
